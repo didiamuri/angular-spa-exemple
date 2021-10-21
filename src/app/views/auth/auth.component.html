@@ -1,0 +1,25 @@
+<div class="card auth-container">
+  <div class="card-body">
+    <div class="auth-form mt-3">
+      <div class="mb-3">
+        <label htmlFor="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email address">
+      </div>
+      <div class="mb-2">
+        <label htmlFor="password" class="form-label">Mot de passe</label>
+        <span class="forgot-pwd"><a routerLink="/">Mot de passe oublié ?</a></span>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" role="switch" id="rememberSwitch">
+        <label class="form-check-label" htmlFor="rememberSwitch">Se souvenir de moi</label>
+      </div>
+      <div class="d-grid gap-1">
+        <a class="btn btn-danger" routerLink="/dashboard">
+          Se connecter
+        </a>
+      </div>
+      <p>Vous n'avez pas de compte ? <a routerLink="/signup">Créer un compte</a></p>
+    </div>
+  </div>
+</div>
