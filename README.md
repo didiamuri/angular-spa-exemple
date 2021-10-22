@@ -1,4 +1,4 @@
-# AngularSpaExemple
+# AngularSpaExemple using Github User Finder
 
 ![Alt text](https://github.com/didiamuri/angular-spa-exemple/blob/master/screen.png) 
 
