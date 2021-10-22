@@ -2,224 +2,29 @@
 
   <div class="search-input">
     <div class="row mb-3">
-      <div class="col-md-10 col-sm-10 col-10">
-        <input type="text" class="form-control form-control-lg" placeholder="">
-      </div>
-      <div class="col-md-2 col-sm-2 col-2">
-        <a class="btn btn-lg btn-outline-secondary" type="button">
-          <i class="bi bi-search"></i> Rechercher
-        </a>
-      </div>
+      <form [formGroup]="searchForm" (ngSubmit)="fetchGithubUser()">
+        <div class="form-label-group">
+          <input formControlName="username" type="text" class="form-control form-control-lg" placeholder="" [ngClass]="{ 'is-invalid': isLoading && search_Form.username.errors }">
+          <div *ngIf="isLoading && search_Form.username.errors" class="invalid-feedback">
+            <span>Veuillez renseigner un nom d'utilisateur Github pour le rechercher</span>
+          </div>
+        </div>
+
+      </form>
     </div>
   </div>
 
   <section>
-    <div class="card mb-3">
+    <p *ngIf="isFinish">{{total_count}} résultats trouvé correspondant à <strong>'{{search_Form.username.value}}'</strong></p>
+    <div class="card mb-3" *ngFor="let user of users$">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Prénom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Didierson
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Nom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Amuri
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Sexe:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Masculin
-                </span>
-              </div>
-            </div>
+          <div class="col-md-2 col-sm-2 col-2">
+            <img src="{{user.avatar_url}}" alt="" width="100">
           </div>
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Age:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  29 ans
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Ville:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Kinshasa
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Pays:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  République Démocratique du Congo
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Prénom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Didierson
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Nom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Amuri
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Sexe:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Masculin
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Age:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  29 ans
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Ville:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Kinshasa
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Pays:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  République Démocratique du Congo
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Prénom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Didierson
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Nom:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Amuri
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Sexe:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Masculin
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-12 col-12">
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Age:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  29 ans
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Ville:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  Kinshasa
-                </span>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label class="col-form-label">Pays:</label>
-              </div>
-              <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                  République Démocratique du Congo
-                </span>
-              </div>
-            </div>
+          <div class="col-md-10 col-sm-10 col-10">
+            <h3>{{user.login}}</h3>
+            <a href="{{user.html_url}}" >Profil Github</a>
           </div>
         </div>
       </div>
